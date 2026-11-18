@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Farms — Shrooms</title>
+<meta name="description" content="Eight curated Uniswap pools on Robinhood Chain. Provide liquidity on Uniswap, stake the position here, earn SPORES.">
+<link rel="icon" href="assets/icon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/app.css">
+<style>
+  .hint{
+    display:inline-flex;align-items:center;gap:8px;margin:0 0 4px;
+    font-size:13px;color:var(--muted);
+    background:rgba(154,163,214,.08);border:1px solid var(--edge-soft);
+    padding:7px 13px;border-radius:999px;
+  }
+  .sheet-blurb{color:var(--muted);font-size:13.5px;line-height:1.6;margin:0 0 18px}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap bar-in">
+    <a class="brand" href="index.html"><img src="assets/logo.png" alt="" width="34" height="34"><span>Shrooms</span></a>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="farms.html">Farms</a>
+      <a href="swap.html">Swap</a>
+      <a href="vault.html">Treasury</a>
+      <a href="tokenomics.html">Tokenomics</a>
+      <a href="grimoire.html">Grimoire</a>
+    </nav>
+    <button class="btn" data-connect>Connect wallet</button>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="phead">
+    <h1>Choose your strain</h1>
+    <p>Each strain is a real <strong>Uniswap</strong> pool on Robinhood Chain. You provide liquidity on Uniswap as normal; stake the position here and it earns <strong>SPORES</strong> on top of the pool's own fees.</p>
+    <p class="caveat">Every APR on this page is <strong>the Uniswap pool's own</strong> trailing fee yield. Shrooms does not pay it, does not control it, and it moves hour to hour. SPORES is what Shrooms adds.</p>
+    <p style="margin-top:14px"><a class="btn" href="https://ponsfamily.com/" target="_blank" rel="noopener">Get SHROOMS on Pons</a></p>
+  </section>
+
+  <dl class="strip" style="margin-top:28px">
+    <div><dt>Positions staked</dt><dd id="tvl">&mdash;</dd></div>
+    <div><dt>Redemption floor</dt><dd id="floor">&mdash; ETH</dd></div>
+    <div><dt>Next drip</dt><dd id="clock">&mdash;</dd></div>
+    <div><dt>Strains stakeable</dt><dd id="nstake">&mdash;</dd></div>
+  </dl>
+
+  <section style="margin-top:38px">
+    <p class="hint">Poke a mushroom to wake it up</p>
+    <div class="filters" id="filters">
+      <button class="chip" aria-pressed="true" data-f="all">All strains</button>
+      <button class="chip" aria-pressed="false" data-f="stakeable">Stakeable now</button>
+      <button class="chip" aria-pressed="false" data-f="shrooms">SHROOMS pairs</button>
+      <button class="chip" aria-pressed="false" data-f="Legendary">Legendary</button>
+      <button class="chip" aria-pressed="false" data-f="Epic">Epic</button>
+      <button class="chip" aria-pressed="false" data-f="Rare">Rare</button>
+      <button class="chip" aria-pressed="false" data-f="Common">Common</button>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <span class="foot-brand"><img src="assets/logo.png" alt="" width="28" height="28">Shrooms</span>
+      <div class="socials">
+        <a href="https://x.com/Shroomshype" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2H22l-7.3 8.4L23.3 22h-6.7l-5.2-6.9L5.4 22H2.3l7.8-9L1.7 2h6.9l4.7 6.3L18.9 2Zm-1.1 18h1.7L7.3 3.7H5.5L17.8 20Z"/></svg>X</a>
+        <a href="https://t.me/shroomshype" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.9 4.3 18.9 19c-.2 1-.8 1.3-1.7.8l-4.6-3.4-2.2 2.1c-.3.3-.5.5-1 .5l.3-4.7 8.5-7.7c.4-.3-.1-.5-.6-.2L7.1 12.9l-4.5-1.4c-1-.3-1-1 .2-1.4l17.6-6.8c.8-.3 1.5.2 1.5 1Z"/></svg>Telegram</a>
+        <a href="https://github.com/Shroomshype" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.7 1.2 3.4.9.1-.7.4-1.2.7-1.5-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6A11.5 11.5 0 0 0 12 .5Z"/></svg>GitHub</a>
+      </div>
+    </div>
+    <p class="disc">Running on Robinhood Chain testnet. SPORES rewards come from real fee income, not emissions, so they move with real volume. Pool APRs shown are Uniswap's own and are not paid by Shrooms. Unaudited — every figure here is a simulation until the contracts are live.</p>
+  </div>
+</footer>
+
+<div class="veil" id="veil" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-name">
+    <div class="sheet-top">
+      <img id="sheet-img" src="assets/strains/amanita.png" alt="" width="60" height="60">
+      <div>
+        <h3 id="sheet-name">—</h3>
+        <div class="sub" id="sheet-sub">—</div>
+      </div>
+      <button class="close" id="close" aria-label="Close">×</button>
+    </div>
+    <p class="sheet-blurb" id="sheet-blurb"></p>
+
+    <ol class="steps">
+      <li><b>Add liquidity on Uniswap.</b> Pick your price range there; Shrooms does not change how that works.</li>
+      <li><b>Stake the position here.</b> Uniswap hands you an NFT. Staking transfers that NFT to the farm, and withdrawing returns it.</li>
+      <li><b>Keep it in range.</b> A position earns SPORES only while the pool's price sits inside its range, the same way it only earns Uniswap fees in range.</li>
+    </ol>
+
+    <p class="sheet-blurb" id="stream-note">&mdash;</p>
+
+    <button class="btn" id="plant" style="width:100%;margin-top:4px">Connect wallet to stake</button>
+    <a class="getlink" id="getlink" href="https://app.uniswap.org/" target="_blank" rel="noopener">
+      <span id="getlink-label">Add liquidity on Uniswap</span> ↗
+    </a>
+    <p class="fine">Withdraw any time · your position stays yours · rewards stream for 7 days per drip</p>
+  </div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script>
+  Shrooms.markCurrentNav();
+  Shrooms.initWallet();
+  document.getElementById('nstake').textContent =
+    STRAINS.filter(function (f) { return f.stakeable; }).length + ' of ' + STRAINS.length;
+  Shrooms.tickerStrip({ clockEl: document.getElementById('clock') });
+</script>
+<script src="js/farms.js"></script>
+</body>
+</html>

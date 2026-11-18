@@ -1,0 +1,11 @@
+{
+  "name": "shrooms-robinhood-web",
+  "version": "4.0.0",
+  "private": true,
+  "description": "Shrooms front end — six static pages over Uniswap on Robinhood Chain. No build step.",
+  "scripts": {
+    "start": "npx serve .",
+    "test": "node scripts/test-site.js"
+  },
+  "license": "MIT"
+}
